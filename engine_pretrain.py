@@ -20,7 +20,7 @@ import util.lr_sched as lr_sched
 
 import torch.distributed as dist
 
-from uni_reg import entroy_loss,spectral_loss_neg
+from uni_reg import spectral_loss_neg
 
 
   
@@ -56,8 +56,6 @@ def train_one_epoch(model: torch.nn.Module,
 
             if args.reg == 'none':
                 loss_reg = torch.zeros_like(loss_mae)
-            elif args.reg == 'entropy':
-                loss_reg = entroy_loss(cls_feats, tau=args.tau)
             else:
                 loss_reg = spectral_loss_neg(cls_feats, tau=args.tau)
             
