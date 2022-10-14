@@ -4,7 +4,7 @@ This repo includes the code for Neurips 2022 paper [How Mask Matters: Towards Th
 
 ## Acknowledgement
 
-This repo is based on the official code of MAE. (https://github.com/facebookresearch/mae)
+This repo is based on the official code of MAE. (https://github.com/facebookresearch/mae) And the instructions can be found in ``OFFICIAL_MAE-README.md``.
 
 ## The Uniformity-enhanced MAE loss
 
