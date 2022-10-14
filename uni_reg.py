@@ -2,6 +2,15 @@ import torch
 import torch.distributed as dist
 
 
+def spectral_loss_neg(features, tau=1.0):
+    # gather across devices
+    features = torch.cat(GatherLayer.apply(features), dim=0)
+    # calculate loss
+    features = torch.nn.functional.normalize(features)
+    sim = features @ features.T / tau
+    loss = sim.pow(2).mean()
+    return loss
+
 
 class GatherLayer(torch.autograd.Function):
     """Gather tensors from all process, supporting backward propagation."""
@@ -22,20 +31,4 @@ class GatherLayer(torch.autograd.Function):
 
 
 
-def entroy_loss(features, tau=1.0):
-    # gather across devices
-    features = torch.cat(GatherLayer.apply(features), dim=0)
-    # calculate loss
-    features = torch.nn.functional.normalize(features)
-    sim = features @ features.T / tau
-    loss = sim.logsumexp(dim=1).mean()
-    return loss
 
-def spectral_loss_neg(features, tau=1.0):
-    # gather across devices
-    features = torch.cat(GatherLayer.apply(features), dim=0)
-    # calculate loss
-    features = torch.nn.functional.normalize(features)
-    sim = features @ features.T / tau
-    loss = sim.pow(2).mean()
-    return loss
