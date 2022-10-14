@@ -10,7 +10,7 @@ This repo is based on the official code of MAE (https://github.com/facebookresea
 The main differences between our and the official code include:
 
 1. We add a new uniformity regularizier, which is implemented in ``uni_reg.py``. Our implementation of the regularizer is based on the spectral contrasive loss (https://arxiv.org/abs/2106.04156).
-2. We add two hyperparemeters in ``pretrain.sh``.  ``beta`` is the coffecient of the regularizer and ``tau`` is the coffecient to normalize the similarity matrix. Both ``beta`` and ``tau`` are designed to control the strength of the regularizier (default ``tau=0.1`` and ``beta = 0.0001``).
+2. We add two hyperparemeters in ``pretrain.sh``.  ``beta`` is the coffecient of the regularizer (a larger ``beta`` indicates a stronger uniformity term) and ``tau`` is the coffecient to normalize the similarity matrix (a small ``tau`` indicates a stronger uniformity term). Both ``beta`` and ``tau`` are designed to control the strength of the regularizier (default ``tau=0.1`` and ``beta = 0.0001``).
 3. We add a linear classfier to monitor the online linear accuracy whose gradient will not be backward propagated to the backbone.
 4. We follow most of the settings in ``pretrain.sh`` of the official MAE code. Except we set the epoch to 200 and the corresponding warmup epoch to 20.
 
