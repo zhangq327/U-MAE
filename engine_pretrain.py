@@ -57,7 +57,7 @@ def train_one_epoch(model: torch.nn.Module,
             if args.reg == 'none':
                 loss_reg = torch.zeros_like(loss_mae)
             else:
-                loss_reg = uniformity_loss(cls_feats, tau=args.tau)
+                loss_reg = uniformity_loss(cls_feats)
             
             loss_ce = torch.nn.functional.cross_entropy(outputs, targets)
 
