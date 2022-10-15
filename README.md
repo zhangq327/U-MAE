@@ -12,7 +12,7 @@ U-MAE is an extension of [MAE (He et al., 2022)](https://arxiv.org/pdf/2111.0637
 ## Instructions
 This repo is based on the [official code of MAE](https://github.com/facebookresearch/mae) with minor modifications below, and we follow all the default training and evaluation configurations of MAE. Please see their instructions [README_mae.md](README_mae.md) for details.
 
-**Main differences.** In U-MAE, we introduce a ``uniformity_loss``  (implemented in ``loss_func.py``) as a uniformity regularization to the MAE loss. It has an additional hyper-parameter ``lamb`` (default to ``1e-2``), the coefficient lambda of the uniformity regularizer in the U-MAE loss. 
+**Main differences.** In U-MAE, we introduce a ``uniformity_loss``  (implemented in ``loss_func.py``) as a uniformity regularization to the MAE loss. It has an additional hyper-parameter ``lamb`` (default to ``1e-2``), the coefficient of the uniformity regularizer in the U-MAE loss. 
 
 **Minor points:**
 1. We add a linear classifier to monitor the online linear accuracy and its gradient will not be backward propagated to the backbone encoder.
