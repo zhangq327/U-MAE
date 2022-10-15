@@ -1,18 +1,25 @@
 # U-MAE
 
-This repo includes the code for Neurips 2022 paper [How Mask Matters: Towards Theoretical Understandings of Masked Autoencoders.]
+This repository includes the code for the Uniformity-enhanced Masked Autoencoder (**U-MAE**) proposed in the NeurIPS 2022 paper [How Mask Matters: Towards Theoretical Understandings of Masked Autoencoders](https://openreview.net/pdf?id=WOppMAJtvhv). 
 
-## Running Instructions
-This repo is based on the official code of MAE (https://github.com/facebookresearch/mae).  And the running instructions can be found in ``OFFICIAL_MAE-README.md``.
+U-MAE is an extension of [MAE (He et al., 2022)](https://arxiv.org/pdf/2111.06377.pdf) by further encouraging the feature uniformity of MAE. As shown below, U-MAE successfully addresses the dimensional collapse issue of MAE.
 
-## The Uniformity-enhanced MAE Loss
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/16850758/195980285-48985231-fc68-40a1-b2d3-81462c5f868a.png" width="1000">
+</p>
 
-The main differences between our and the official code include:
 
-1. We add a new uniformity regularizier, which is implemented in ``uni_reg.py``. Our implementation of the regularizer is based on the spectral contrasive loss (https://arxiv.org/abs/2106.04156).
-2. We add two hyperparemeters in ``pretrain.sh``.  ``beta`` is the coffecient of the regularizer (a larger ``beta`` indicates a stronger uniformity term) and ``tau`` is the coffecient to normalize the similarity matrix (a small ``tau`` indicates a stronger uniformity term). Both ``beta`` and ``tau`` are designed to control the strength of the regularizier (default ``tau=0.1`` and ``beta = 0.0001``).
-3. We add a linear classfier to monitor the online linear accuracy whose gradient will not be backward propagated to the backbone.
-4. We follow most of the settings in ``pretrain.sh`` of the official MAE code. Except we set the epoch to 200 and the corresponding warmup epoch to 20.
+## Instructions
+This repo is based on the [official code of MAE](https://github.com/facebookresearch/mae) with minor modifications below, and we follow all the default training and evaluation configurations of MAE. Please see their instructions [README_mae.md](README_mae.md) for details.
+
+**Main differences.** In U-MAE, we introduce a ``uniformity_loss``  (implemented in ``loss_func.py``) as a uniformity regularization to the MAE loss. It has two  additional hyper-parameters that are included in ``pretrain.sh``:
+* ``lambda`` (default to ``1e-4``) is the coefficient of the uniformity regularizer in the U-MAE loss;
+* ``tau`` (default to ``0.1``) is a temperature parameter to scale the feature similarity as adopted in SimCLR. 
+
+**Minor points:**
+1. We add a linear classifier to monitor the online linear accuracy and its gradient will not be backward propagated to the backbone encoder.
+2. For efficiency, we only train U-MAE for 200 epochs, and accordingly, we adopt 20 warmup epochs.
 
 ## Acknowledgement
-Our code is follow the default settings of the official implementation of MAE (https://github.com/facebookresearch/mae).
+
+Our code follows the official implementations of MAE (https://github.com/facebookresearch/mae).
