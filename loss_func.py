@@ -2,12 +2,12 @@ import torch
 import torch.distributed as dist
 
 
-def uniformity_loss(features, tau=0.1):
+def uniformity_loss(features):
     # gather across devices
     features = torch.cat(GatherLayer.apply(features), dim=0)
     # calculate loss
     features = torch.nn.functional.normalize(features)
-    sim = features @ features.T / tau
+    sim = features @ features.T 
     loss = sim.pow(2).mean()
     return loss
 
