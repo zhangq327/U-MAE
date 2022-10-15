@@ -13,7 +13,7 @@ U-MAE is an extension of [MAE (He et al., 2022)](https://arxiv.org/pdf/2111.0637
 This repo is based on the [official code of MAE](https://github.com/facebookresearch/mae) with minor modifications below, and we follow all the default training and evaluation configurations of MAE. Please see their instructions [README_mae.md](README_mae.md) for details.
 
 **Main differences.** In U-MAE, we introduce a ``uniformity_loss``  (implemented in ``loss_func.py``) as a uniformity regularization to the MAE loss. It has two  additional hyper-parameters that are included in ``pretrain.sh``:
-* ``lambda1`` (default to ``1e-4``) is the coefficient of the uniformity regularizer in the U-MAE loss;
+* ``lamb` (default to ``1e-4``) is the coefficient lambda of the uniformity regularizer in the U-MAE loss;
 * ``tau`` (default to ``0.1``) is a temperature parameter to scale the feature similarity as adopted in SimCLR. 
 
 **Minor points:**
