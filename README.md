@@ -2,7 +2,7 @@
 
 This repository includes a PyTorch implementation of the NeurIPS 2022 paper [How Mask Matters: Towards Theoretical Understandings of Masked Autoencoders](https://openreview.net/pdf?id=WOppMAJtvhv). 
 
-U-MAE is an extension of [MAE (He et al., 2022)](https://arxiv.org/pdf/2111.06377.pdf) by further encouraging the feature uniformity of MAE. As shown below, U-MAE successfully addresses the dimensional collapse issue of MAE.
+U-MAE is an extension of [MAE (He et al., 2022)](https://arxiv.org/pdf/2111.06377.pdf) by further encouraging the feature uniformity of MAE. As shown below, U-MAE successfully addresses the dimensional feature collapse issue of MAE.
 
 <p align="center">
   <img src="https://user-images.githubusercontent.com/16850758/195980285-48985231-fc68-40a1-b2d3-81462c5f868a.png" width="1000">
