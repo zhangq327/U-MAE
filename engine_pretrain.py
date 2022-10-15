@@ -20,7 +20,7 @@ import util.lr_sched as lr_sched
 
 import torch.distributed as dist
 
-from uni_reg import spectral_loss_neg
+from loss_func import uniformity_loss
 
 
   
@@ -57,11 +57,11 @@ def train_one_epoch(model: torch.nn.Module,
             if args.reg == 'none':
                 loss_reg = torch.zeros_like(loss_mae)
             else:
-                loss_reg = spectral_loss_neg(cls_feats, tau=args.tau)
+                loss_reg = uniformity_loss(cls_feats, tau=args.tau)
             
             loss_ce = torch.nn.functional.cross_entropy(outputs, targets)
 
-        loss = loss_mae + args.beta * loss_reg + loss_ce
+        loss = loss_mae + args.lambda1 * loss_reg + loss_ce
 
         loss_mae_value = loss_mae.item()
         loss_reg_value = loss_reg.item()
