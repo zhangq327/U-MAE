@@ -1,6 +1,6 @@
 # U-MAE (Uniformity-enhanced Masked Autoencoder)
 
-This repository includes a PyTorch implementation of the NeurIPS 2022 paper [How Mask Matters: Towards Theoretical Understandings of Masked Autoencoders](https://openreview.net/pdf?id=WOppMAJtvhv). 
+This repository includes a PyTorch implementation of the NeurIPS 2022 paper [How Mask Matters: Towards Theoretical Understandings of Masked Autoencoders](https://arxiv.org/pdf/2210.08344.pdf) authored by Qi Zhang, [Yifei Wang](https://yifeiwang77.github.io/), and [Yisen Wang](https://yisenwang.github.io/).
 
 U-MAE is an extension of [MAE (He et al., 2022)](https://arxiv.org/pdf/2111.06377.pdf) by further encouraging the feature uniformity of MAE. As shown below, U-MAE successfully addresses the dimensional feature collapse issue of MAE.
 
@@ -17,6 +17,17 @@ This repo is based on the [official code of MAE](https://github.com/facebookrese
 **Minor points:**
 1. We add a linear classifier to monitor the online linear accuracy and its gradient will not be backward propagated to the backbone encoder.
 2. For efficiency, we only train U-MAE for 200 epochs, and accordingly, we adopt 20 warmup epochs.
+
+## Citing this work
+If you find the work useful, please cite the accompanying paper:
+```
+@inproceedings{zhang2022how,
+  title={How Mask Matters: Towards Theoretical Understandings of Masked Autoencoders},
+  author={Zhang, Qi and Wang, Yifei and Wang, Yisen},
+  booktitle={NeurIPS},
+  year={2022}
+}
+```
 
 ## Acknowledgement
 
