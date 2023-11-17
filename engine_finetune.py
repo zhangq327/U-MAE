@@ -56,10 +56,7 @@ def train_one_epoch(model: torch.nn.Module, criterion: torch.nn.Module,
         with torch.cuda.amp.autocast():
             outputs = model(samples)
             loss = criterion(outputs, targets)
-            if len(total)<=10000:
-                for i in range(len(cls_feats)):
-                    if targets[i]<10:
-                        total.append(cls_feats[i].cpu().detach().numpy())
+
 
         loss_value = loss.item()
 
